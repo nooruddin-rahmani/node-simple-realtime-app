@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+	<head>
+		<meta charset="UTF-8" />
+		<link rel="icon" type="image/x-icon" href="./images/favicon-32x32.png" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>شاروالی کابل</title>
+		<link rel="stylesheet" href="./styles.css" />
+	</head>
+	<body>
+		<img
+			class="image"
+			src="./images/WhatsApp_Image_2023-08-28_at_11.29.40_PM-removebg-preview.png"
+			alt=""
+		/>
+		<div class="header">
+			<h1>شاروالی کابل</h1>
+			<h2>ریاست نشرات و آگاهی عامه</h2>
+			<h3>گزارش روزانه کارمندان این اداره</h3>
+		</div>
+		<div>
+			<form id="myForm" class="content">
+				<input type="text" id="input1" placeholder="نام کارمند:" required />
+				<input type="text" id="input2" placeholder="بست / مسولیت:" required />
+				<textarea placeholder="گزارش کاری:" rows="4" id="input3" required></textarea>
+				<input type="text" placeholder="ملاحضات:" id="input4" />
+				<button type="submit">ارسال</button>
+			</form>
+		</div>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.3.1/socket.io.js"></script>
+		<script>
+			// Create a WebSocket connection
+			const socket = io();
+
+			// Handle form submission
+			document.getElementById('myForm').addEventListener('submit', (e) => {
+				e.preventDefault();
+
+				// Get the form data
+				const input1 = document.getElementById('input1').value;
+				const input2 = document.getElementById('input2').value;
+				const input3 = document.getElementById('input3').value;
+				const input4 = document.getElementById('input4').value;
+				const date_now = new Date().toLocaleString();
+				// Create an object with the form data
+				const formData = {
+					input1: input1,
+					input2: input2,
+					input3: input3,
+					input4: input4,
+					input5: date_now
+				};
+
+				// Emit the form data to the server
+				socket.emit('formSubmission', formData);
+
+				// Reset the form inputs
+				document.getElementById('myForm').reset();
+			});
+		</script>
+	</body>
+</html>

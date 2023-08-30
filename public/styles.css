@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;600&display=swap');
+
+
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    color: #fff;
+    font-family: 'Noto Sans Arabic', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100vh;
+    gap: 35px;
+    background-color: #342f52;
+}
+.image{
+    margin-top: 30px;
+    width: 200px;
+    margin-bottom: 10px;
+}
+.header{
+    margin-top: -50px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+.content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+.content > h1{
+    font-size: medium;
+}
+.content > input{
+    width: 600px;
+    height: 48px;
+    font-size: 14px;
+    border-radius: 4px;
+    outline: none;
+    padding-right: 20px;
+    border: 2px solid #D1B22C;
+    background-color: #342f52;
+    color: #fff;
+    font-family: 'Noto Sans Arabic', sans-serif;
+}
+.content > input::placeholder{
+    color: #ebebeb;
+}
+
+.content > textarea{
+    color: #fff;
+    width: 600px;
+    border: 2px solid #D1B22C;
+    font-size: 14px;
+    border-radius: 4px;
+    outline: none;
+    padding-right: 20px;
+    padding-top: 20px;
+    resize:none;
+    background-color: #342f52;
+    font-family: 'Noto Sans Arabic', sans-serif;
+}
+.content > textarea::placeholder{
+    color: #ebebeb;
+}
+
+.content > button{
+    margin-top: 10px;
+    width: 400px;
+    height: 48;
+    font-size: 18px;
+    padding: 10px;
+    background-color: #D1B22C;
+    outline: none;
+    border: 1px solid #D1B22C;
+    border-radius: 4px;
+    color: #342f52;
+    font-family: 'Noto Sans Arabic', sans-serif;
+
+}
+@media screen and (max-width: 600px){
+    .content > input{
+        width: 400px;
+    }
+    .content > textarea{
+        width: 400px;
+    }
+    .content > button{
+        width: 420px;
+    }
+}

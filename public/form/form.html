@@ -1,0 +1,68 @@
+<!-- otherpage.html -->
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+	<head>
+		<link rel="icon" type="image/x-icon" href="../images/favicon-32x32.png" />
+		<link rel="stylesheet" href="./form-styles.css" />
+		<title>شاروالی کابل</title>
+	</head>
+
+	<style media="print">
+		@page {
+			size: A4;
+			margin: 0;
+		}
+
+		body {
+			margin: 0;
+			page-break-after: always;
+		}
+	</style>
+	<body>
+		<div class="header">
+			<h1>شاروالی کابل</h1>
+			<h2>ریاست نشرات و آگاهی عامه</h2>
+			<h3>گزارش روزانه کارمندان این اداره</h3>
+		</div>
+		<table id="dataTable">
+			<tr>
+				<th width="15%">نام کارمند</th>
+				<th width="10%">بست / مسولیت</th>
+				<th width="60%">گزارش کاری</th>
+				<th width="10%">تاریخ</th>
+				<th width="10">ملاحضه</th>
+			</tr>
+		</table>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.3.1/socket.io.js"></script>
+		<script>
+			const socket = io();
+
+			// Function to add a new row to the table
+			function addRow(rowData) {
+				const table = document.getElementById('dataTable');
+				const row = table.insertRow();
+
+				for (let i = 0; i < rowData.length; i++) {
+					const cell = row.insertCell();
+					cell.innerHTML = rowData[i];
+				}
+			}
+
+			// Listen for form data updates from the server
+			socket.on('formData', (data) => {
+				// Clear the existing table rows
+				const table = document.getElementById('dataTable');
+				table.innerHTML =
+					'<tr><th>نام کارمند</th><th>بست / مسولیت</th><th>گزارش کاری</th><th>ملاحضه</th><th>تاریخ</th></tr>';
+
+				// Add each form data entry as a new row in the table
+				for (let i = 0; i < data.length; i++) {
+					const formData = data[i];
+					const rowData = [formData.input1, formData.input2, formData.input3, formData.input4];
+					addRow(rowData);
+				}
+			});
+		</script>
+	</body>
+</html>
