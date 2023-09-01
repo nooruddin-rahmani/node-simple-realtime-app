@@ -6,15 +6,12 @@ const io = require('socket.io')(http);
 
 let formData = [];
 
-app.use(express.static('public'));
+app.use(express.static('dist'));
 
-const allowedTimes = [
-	{ start: 1, end: 18 } // Example time period from 9 AM to 6 PM
-	// Add more time periods as needed
-];
+const allowedTimes = [{ start: 1, end: 18 }];
 
 app.get('/form', (req, res) => {
-	res.sendFile(__dirname + '/public/form/form.html');
+	res.sendFile(__dirname + '/dist/form/form.html');
 });
 app.get('/', (req, res) => {
 	const currentTime = new Date().getHours();
@@ -24,11 +21,11 @@ app.get('/', (req, res) => {
 	});
 
 	if (!isAllowed) {
-		return res.status(403).sendFile(__dirname + '/public/forbidden.html');
+		return res.status(403).sendFile(__dirname + '/dist/forbidden.html');
 	}
 
 	// Handle the route logic during the allowed time
-	res.sendFile(__dirname + '/public/index.html');
+	res.sendFile(__dirname + '/dist/index.html');
 });
 
 io.on('connection', (socket) => {
@@ -50,6 +47,6 @@ io.on('connection', (socket) => {
 	});
 });
 
-http.listen(3004, () => {
-	console.log('Server running on port 3004');
+http.listen(8080, () => {
+	console.log('Server running on port 8080');
 });
