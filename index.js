@@ -8,8 +8,6 @@ let formData = [];
 
 app.use(express.static('dist'));
 
-const allowedTimes = [{ start: 1, end: 18 }];
-
 app.get('/form', (req, res) => {
 	res.sendFile(__dirname + '/dist/form/form.html');
 });
