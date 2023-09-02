@@ -14,17 +14,6 @@ app.get('/form', (req, res) => {
 	res.sendFile(__dirname + '/dist/form/form.html');
 });
 app.get('/', (req, res) => {
-	const currentTime = new Date().getHours();
-
-	const isAllowed = allowedTimes.some((timePeriod) => {
-		return currentTime >= timePeriod.start && currentTime < timePeriod.end;
-	});
-
-	if (!isAllowed) {
-		return res.status(403).sendFile(__dirname + '/dist/forbidden.html');
-	}
-
-	// Handle the route logic during the allowed time
 	res.sendFile(__dirname + '/dist/index.html');
 });
 
